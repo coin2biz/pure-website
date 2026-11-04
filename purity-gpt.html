@@ -3,50 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PURE AI - Professional</title>
+<title>PURE AI — Next-Gen AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  /* Professional CSS - Clean & Fast */
-  body{margin:0;background:#000;color:#fff;font-family:system-ui;height:100vh;display:flex;justify-content:center}
-  .app{width:100%;max-width:480px;background:#0f0f0f;display:flex;flex-direction:column;height:100vh;border:1px solid #222}
-  .header{padding:20px;border-bottom:1px solid #222;display:flex;align-items:center;gap:10px}
-  .header h1{letter-spacing:6px;font-size:18px;margin:0}
-  #chat{flex:1;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
-  .bubble{padding:14px 18px;border-radius:18px;max-width:85%;font-size:14px;line-height:1.5}
-  .bubble.user{align-self:flex-end;background:#fff;color:#000;border-bottom-right-radius:4px}
-  .bubble.ai{align-self:flex-start;background:#1e1e1e;border:1px solid #2a2a2a;border-bottom-left-radius:4px}
-  .input-area{padding:16px;display:flex;gap:10px;border-top:1px solid #222}
-  .input-area input{flex:1;background:#1e1e1e;border:1px solid #333;border-radius:24px;padding:12px 18px;color:#fff;outline:none}
-  .input-area button{background:#fff;color:#000;border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;font-weight:bold}
+:root{--bg:#07080a;--side:#0f1117;--card:rgba(23,26,35,0.7);--card2:rgba(32,36,49,0.8);--b:rgba(255,255,255,0.08);--ba:rgba(99,102,241,0.4);--a:#6366f1;--ag:linear-gradient(135deg,#6366f1,#a855f7);--t:#f3f4f6;--tm:#9ca3af}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+html,body{width:100%;height:100dvh;background:var(--bg);color:var(--t);overflow:hidden}
+.app{display:flex;width:100vw;height:100dvh}
+#sidebar{width:310px;background:var(--side);border-right:1px solid var(--b);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform 0.35s}
+#sidebar.closed{transform:translateX(-100%)}
+.sh{padding:20px 18px;display:flex;justify-content:space-between;border-bottom:1px solid var(--b)}
+.bi{width:32px;height:32px;background:var(--ag);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.btn-new{width:calc(100% - 36px);margin:16px 18px;padding:12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--b);color:var(--t);font-weight:600;cursor:pointer}
+#list{flex:1;overflow-y:auto;padding:0 14px;display:flex;flex-direction:column;gap:4px}
+.item{padding:11px 14px;border-radius:10px;color:var(--tm);font-size:0.88rem;display:flex;justify-content:space-between;cursor:pointer}
+.item.active{background:var(--card);color:#fff;border-color:var(--ba)}
+.main{flex:1;display:flex;flex-direction:column;height:100dvh}
+header{height:64px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+#vp{flex:1;overflow-y:auto;padding:30px 20%;display:flex;flex-direction:column;gap:24px}
+@media(max-width:640px){#vp{padding:16px 4%}}
+.hero{margin:auto;text-align:center;max-width:600px;display:flex;flex-direction:column;align-items:center;gap:16px;padding:40px 0}
+.hero .big{width:64px;height:64px;background:var(--ag);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-top:20px}
+.card{background:var(--card);border:1px solid var(--b);padding:16px;border-radius:14px;cursor:pointer}
+.row{display:flex;gap:16px;width:100%}.row.user{justify-content:flex-end}
+.av{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ai .av{background:var(--ag)}.user .av{background:#374151}
+.bub{max-width:80%;padding:16px 20px;border-radius:18px;font-size:0.95rem;line-height:1.6;word-break:break-word}
+.ai .bub{background:var(--card);border:1px solid var(--b);border-top-left-radius:4px}
+.user .bub{background:var(--ag);border-top-right-radius:4px;color:#fff}
+pre{background:#0d0f14;border:1px solid var(--b);border-radius:10px;padding:14px;margin:12px 0;overflow-x:auto;white-space:pre-wrap}
+.inputW{padding:0 20% 28px 20%}@media(max-width:640px){.inputW{padding:0 4% 26px 4%}}
+.box{background:rgba(23,26,35,0.85);border:1px solid var(--b);border-radius:18px;padding:10px 14px 10px 18px;display:flex;gap:12px}
+.box textarea{flex:1;background:transparent;border:none;outline:none;color:var(--t);font-size:0.95rem;resize:none;max-height:150px}
+.send{width:38px;height:38px;border-radius:12px;background:var(--ag);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;z-index:90}.overlay.show{display:block}
+.toast{position:fixed;bottom:20px;right:20px;background:#1f2937;border:1px solid var(--b);color:#fff;padding:12px 20px;border-radius:10px;z-index:300;transform:translateY(100px);opacity:0;transition:all 0.3s}.toast.show{transform:translateY(0);opacity:1}
+.tlayer{position:fixed;inset:0;z-index:150;background:rgba(7,8,10,0.85);display:none;align-items:center;justify-content:center}.tlayer.show{display:flex}
+.tbox{width:90%;max-width:380px;background:#161822;border:1px solid var(--b);border-radius:16px;padding:28px;text-align:center}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="header"><h1>PURE AI</h1></div>
-  <div id="chat"><div class="bubble ai">Hi Anna! I'm PURE AI. How can I help?</div></div>
-  <div class="input-area"><input id="inp" placeholder="Ask anything..."><button onclick="send()">↑</button></div>
+<aside id="sidebar" class="closed"><div class="sh"><div style="display:flex;gap:12px;font-weight:700"><div class="bi"><i class="fa-solid fa-brain"></i></div><span>PURE AI</span></div><button onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button></div><button class="btn-new" onclick="createNewChat()">+ New Conversation</button><div style="padding:0 18px 12px"><input id="search" placeholder="Search..." oninput="filterChats()" style="width:100%;background:rgba(0,0,0,0.2);border:1px solid var(--b);padding:9px 14px;border-radius:8px;color:#fff"></div><div id="list"></div></aside>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+<main class="main"><header><button onclick="toggleSidebar()" style="background:none;border:none;color:#9ca3af;font-size:1.2rem"><i class="fa-solid fa-bars-staggered"></i></button><span style="color:#9ca3af;font-size:0.85rem">PURE AI v2.5 Online</span><button onclick="clearToken()" style="background:none;border:1px solid var(--b);color:#9ca3af;padding:6px 12px;border-radius:8px;cursor:pointer">Reset</button></header><div id="vp"></div><div class="inputW"><div class="box"><textarea id="inp" rows="1" placeholder="Ask anything..." oninput="autoResize(this)" onkeydown="handleKeyDown(event)"></textarea><button class="send" onclick="sendMessage()"><i class="fa-solid fa-arrow-up"></i></button></div></div></main>
 </div>
+<div class="tlayer" id="tlayer"><div class="tbox"><h3>Enter Gemini Token</h3><p style="color:#9ca3af;font-size:0.85rem;margin:10px 0 16px">Paste Gemini API Key</p><input id="tokenIn" type="password" placeholder="AIzaSy..." style="width:100%;background:#0c0e14;border:1px solid var(--b);padding:10px;border-radius:8px;color:#fff"><div style="display:flex;gap:10px;margin-top:16px"><button onclick="hideToken()" style="flex:1;padding:8px;border-radius:8px;border:none;background:rgba(255,255,255,0.08);color:#9ca3af">Cancel</button><button onclick="saveToken()" style="flex:1;padding:8px;border-radius:8px;border:none;background:var(--ag);color:#fff">Start</button></div></div></div>
+<div class="toast" id="toast">Done</div>
 <script>
-  // Professional JS - No error
-  const chat=document.getElementById('chat');
-  async function send(){
-    const input=document.getElementById('inp');
-    const text=input.value.trim(); if(!text) return;
-    chat.innerHTML+=`<div class="bubble user">${text}</div>`;
-    input.value=''; chat.scrollTop=chat.scrollHeight;
-    const token=localStorage.getItem('pure_token') || prompt('Enter Gemini Token Anna:');
-    if(token) localStorage.setItem('pure_token',token);
-    try{
-      const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${token}`,{
-        method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({contents:[{parts:[{text}]}]})
-      });
-      const data=await res.json();
-      const reply=data.candidates?.[0]?.content?.parts?.[0]?.text || 'Error Anna';
-      chat.innerHTML+=`<div class="bubble ai">${reply}</div>`;
-      chat.scrollTop=chat.scrollHeight;
-    }catch(e){chat.innerHTML+=`<div class="bubble ai">Token thappu Anna, check pannunga</div>`;}
-  }
-  document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+let chats=JSON.parse(localStorage.getItem('pure_ai_chats')||'[]');let curId=localStorage.getItem('pure_ai_current')||null;let sending=false;
+function init(){renderList();if(curId&&chats.some(c=>c.id===curId))loadChat(curId);else if(chats.length>0)loadChat(chats[0].id);else renderEmpty();}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('closed');document.getElementById('overlay').classList.toggle('show');}
+function save(){localStorage.setItem('pure_ai_chats',JSON.stringify(chats));localStorage.setItem('pure_ai_current',curId);}
+function createNewChat(){let id=Date.now().toString();chats.unshift({id:id,title:'New Conversation',pinned:false,messages:[]});curId=id;save();renderList();renderEmpty();if(innerWidth<768)toggleSidebar();}
+function renderList(f=''){let c=document.getElementById('list');c.innerHTML='';let l=[...chats];if(f)l=l.filter(x=>x.title.toLowerCase().includes(f.toLowerCase()));l.forEach(ch=>{let d=document.createElement('div');d.className='item '+(ch.id===curId?'active':'');d.innerHTML='<span>'+esc(ch.title)+'</span>';d.onclick=()=>{loadChat(ch.id);if(innerWidth<768)toggleSidebar();};c.appendChild(d);});}
+function loadChat(id){curId=id;save();renderList();let ch=chats.find(c=>c.id===id);let vp=document.getElementById('vp');vp.innerHTML='';if(!ch||ch.messages.length===0){renderEmpty();return;}ch.messages.forEach(m=>addUI(m.role,m.text));vp.scrollTop=vp.scrollHeight;}
+function renderEmpty(){document.getElementById('vp').innerHTML='<div class=hero><div class=big><i class="fa-solid fa-bolt"></i></div><h1>How can I help you today?</h1><p style="color:#9ca3af">I am PURE AI</p><div class=grid><div class=card onclick="quickP(&quot;Write a clean JavaScript function&quot;)"><b>Code Snippet</b><br><small>Sort array</small></div><div class=card onclick="quickP(&quot;Explain sustainable design 2024&quot;)"><b>Trends</b><br><small>Sustainable design</small></div></div></div>';}
+function quickP(t){document.getElementById('inp').value=t;document.getElementById('inp').focus();}
+function esc(s){return s.replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function addUI(role,text){let vp=document.getElementById('vp');let row=document.createElement('div');row.className='row '+role;let isAI=role==='ai';row.innerHTML=(isAI?'<div class=av><i class="fa-solid fa-brain"></i></div>':'')+'<div class=bub>'+fmt(text)+'</div>'+(!isAI?'<div class=av>U</div>':'');vp.appendChild(row);}
+function fmt(t){if(!t)return '';let h=esc(t);h=h.replace(/```([\\s\\S]*?)```/g,(m,c)=>'<pre>'+c.trim()+'</pre>');h=h.replace(/\n/g,'<br>');return h;}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,150)+'px';}
+function handleKeyDown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function filterChats(){renderList(document.getElementById('search').value);}
+function showToast(m){let t=document.getElementById('toast');t.innerText=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function showToken(){document.getElementById('tlayer').classList.add('show');}
+function hideToken(){document.getElementById('tlayer').classList.remove('show');}
+function saveToken(){let v=document.getElementById('tokenIn').value.trim();if(!v)return alert('Token paste pannunga');localStorage.setItem('pure_token',v);hideToken();showToast('Token saved');}
+function clearToken(){localStorage.removeItem('pure_token');showToast('Token cleared');}
+async function sendMessage(){
+if(sending)return;
+let input=document.getElementById('inp');let text=input.value.trim();if(!text)return;
+let token=localStorage.getItem('pure_token');if(!token){showToken();return;}
+let vp=document.getElementById('vp');
+if(vp.querySelector('.hero'))vp.innerHTML='';
+let cur=chats.find(c=>c.id===curId);if(!cur){let nid=Date.now().toString();cur={id:nid,title:text.slice(0,40),pinned:false,messages:[]};chats.unshift(cur);curId=nid;}
+if(cur.messages.length===0){cur.title=text.slice(0,40);renderList();}
+cur.messages.push({role:'user',text:text});addUI('user',text);input.value='';autoResize(input);vp.scrollTop=vp.scrollHeight;save();
+sending=true;
+let load=document.createElement('div');load.className='row ai';load.innerHTML='<div class=av><i class="fa-solid fa-brain"></i></div><div class=bub>...</div>';vp.appendChild(load);vp.scrollTop=vp.scrollHeight;
+try{
+let r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+token,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:text}]}]})});
+let j=await r.json();load.remove();
+if(j.error){addUI('ai','Token Error: '+j.error.message);}
+else{let reply=j.candidates?.[0]?.content?.parts?.[0]?.text||'No response';cur.messages.push({role:'ai',text:reply});addUI('ai',reply);save();renderList();}
+}catch(e){load.remove();addUI('ai','Network error Anna');}
+sending=false;vp.scrollTop=vp.scrollHeight;
+}
+window.onload=init;
 </script>
 </body>
-  </html>
+</html>
