@@ -110,6 +110,28 @@ if(broadcastBtn){broadcastBtn.disabled=false;broadcastBtn.style.opacity="1";broa
 localStorage.setItem("vkr_paid","yes");
 }
 </script>
+<script>
+// FIX - Broadcast Button-a Force-a Lock Pannu
+setInterval(()=>{
+document.querySelectorAll("button").forEach(b=>{
+if(b.textContent.includes("BROADCAST") || b.textContent.includes("PAY PANNITU")){
+if(localStorage.getItem("vkr_paid")!=="yes"){
+b.disabled=true;
+b.style.opacity="0.4";
+b.style.background="#555";
+b.style.cursor="not-allowed";
+b.innerText="🔒 PAY PANNITU BROADCAST PANNUNGA";
+}else{
+b.disabled=false;
+b.style.opacity="1";
+b.style.background="#00C8FF";
+b.style.cursor="pointer";
+b.innerText="🚀 BROADCAST NOW - by VKR";
+}
+}
+});
+},1000);
+</script>
   <div class="card" style="max-width:500px; margin:0 auto;">
   <div style="display:flex; flex-direction:column; gap:12px;">
   <input id="botToken" type="text" placeholder="Enter Bot Token from @BotFather" style="padding:14px; border-radius:12px; border:none; width:100%;">
