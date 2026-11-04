@@ -53,7 +53,22 @@ section{padding:45px 20px}
     <div class="badge"><b>Jetton</b><small>Verified</small></div>
   </div>
 </div>
+<section style="background:#060e25">
+  <h2 class="sec-title">🚀 Coin2Biz Uptime Keeper</h2>
+  <p class="sec-sub">Owner: YOU - 24/7 Bot Monitor</p>
+  <div class="card" style="max-width:500px;margin:0 auto">
+    <input id="boturl" placeholder="https://your-bot.onrender.com" style="padding:12px;width:90%;border-radius:8px;border:none;margin:10px 0">
+    <button onclick="addBot()" class="btn btn-blue" style="width:100%">Add Bot & Keep Alive</button>
+    <div id="botlist" style="margin-top:15px"></div>
+  </div>
+</section>
 
+<script>
+let myBots=JSON.parse(localStorage.getItem('myBots')||'[]');
+function addBot(){let u=document.getElementById('boturl').value;if(!u)return;myBots.push(u);localStorage.setItem('myBots',JSON.stringify(myBots));render();}
+function render(){let h='';myBots.forEach(b=>{h+=`<p style="color:#00ff88">● LIVE - ${b}</p>`;fetch(b,{mode:'no-cors'});});document.getElementById('botlist').innerHTML=h;}
+render();setInterval(render,60000);
+</script>
 <section>
   <h2 class="sec-title">Official Links</h2>
   <p class="sec-sub">All Verified Links</p>
