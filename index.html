@@ -145,71 +145,8 @@ function connectGuardWallet(){
 <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 <script>
 const SECOND_WALLET=".UQCytViO2M2wsq9thmRL2Z2h4DnATHLJ3-PPN8DNiKmPYOso;
-const AMOUNT_PURE=1000;
-const MEMO="VKRCOMPAIGN8821";
-const tonConnectUI=new TON_CONNECT_UI.TonConnectUI({manifestUrl:'https://vkr-pure-ai.github.io/tonconnect-manifest.json',buttonRootId:'ton-connect'});
-let broadcastBtn=null;
-document.addEventListener("DOMContentLoaded",()=>{
-document.querySelectorAll("button").forEach(b=>{if(b.textContent.includes("BROADCAST")){broadcastBtn=b;broadcastBtn.id="broadcastBtn";broadcastBtn.disabled=true;broadcastBtn.style.opacity="0.4";}});
-if(localStorage.getItem("vkr_paid")==="yes") unlockBroadcast();
-});
-tonConnectUI.onStatusChange(wallet=>{
-let payBtn=document.getElementById("payBtn");
-if(wallet){
-document.getElementById("walletAddr").innerText="✅ Connected: "+wallet.account.address;
-payBtn.disabled=false;payBtn.style.background="#0098EA";payBtn.style.cursor="pointer";payBtn.innerText="🔵 PAY 1000 PURE - TONKEEPER";
-document.getElementById("payStatus").innerText="✅ Wallet Connected - Pay";
-document.getElementById("payStatus").style.background="#FFA500";
-}else{
-document.getElementById("walletAddr").innerText="";
-payBtn.disabled=true;payBtn.style.background="#555";payBtn.innerText="🔒 WALLET CONNECT";
-}});
-async function payWithWallet(){
-let payBtn=document.getElementById("payBtn");
-payBtn.innerText="⏳ Tonkeeper Confirm";
-const transaction={validUntil:Math.floor(Date.now()/1000)+600,messages:[{address:SECOND_WALLET,amount:(AMOUNT_PURE*1000000000).toString(),payload:MEMO}]};
-try{const result=await tonConnectUI.sendTransaction(transaction);unlockBroadcast();}catch(e){payBtn.innerText="🔵 PAY 1000 PURE - TONKEEPER";alert("Payment Cancel - Meendum Try");}}
-function unlockBroadcast(){
-document.getElementById("payStatus").innerHTML="✅ Paid - Broadcast Unlocked!";
-document.getElementById("payStatus").style.background="#00C851";
-let payBtn=document.getElementById("payBtn");
-payBtn.innerText="✅ PAID - 1000 PURE";payBtn.disabled=true;payBtn.style.background="#00C851";
-if(broadcastBtn){broadcastBtn.disabled=false;broadcastBtn.style.opacity="1";broadcastBtn.style.cursor="pointer";}
-localStorage.setItem("vkr_paid","yes");
-}
-</script>
-<script>
-// FIX - Broadcast Button-a Force-a Lock Pannu
-setInterval(()=>{
-document.querySelectorAll("button").forEach(b=>{
-if(b.textContent.includes("BROADCAST") || b.textContent.includes("PAY PANNITU")){
-if(localStorage.getItem("vkr_paid")!=="yes"){
-b.disabled=true;
-b.style.opacity="0.4";
-b.style.background="#555";
-b.style.cursor="not-allowed";
-b.innerText="🔒 PAY PANNITU BROADCAST PANNUNGA";
-}else{
-b.disabled=false;
-b.style.opacity="1";
-b.style.background="#00C8FF";
-b.style.cursor="pointer";
-b.innerText="🚀 BROADCAST NOW - by VKR";
-}
-}
-});
-},1000);
-</script>
-  <div class="card" style="max-width:500px; margin:0 auto;">
-  <div style="display:flex; flex-direction:column; gap:12px;">
-  <textarea id="broadMsg" placeholder="Type broadcast message - Owner VKR" style="padding:14px; border-radius:12px; border:none; width:100%; height:80px;"></textarea>
-  <button onclick="broadcastNow()" class="btn" style="background:#00d4ff; color:#000; padding:14px; border-radius:12px; font-weight:bold; width:100%;">🚀 BROADCAST NOW - by VKR</button>
-  <p id="broadStatus" style="color:#00ff88; text-align:center;"></p>
-        </div>
-  </div>
-</section>
 
-<script>
+</section>
 let myBots=JSON.parse(localStorage.getItem('myBots')||'[]');
 function addBot(){let u=document.getElementById('boturl').value;if(!u)return;myBots.push(u);localStorage.setItem('myBots',JSON.stringify(myBots));render();}
 function render(){let h='';myBots.forEach(b=>{h+=`<p style="color:#00ff88">● LIVE - ${b}</p>`;fetch(b,{mode:'no-cors'});});document.getElementById('botlist').innerHTML=h;}
