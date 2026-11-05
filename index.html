@@ -143,7 +143,7 @@ function connectGuardWallet(){
 </script>
 <!-- PURE AI GUARD - END -->
 
-</section>
+</script>
 let myBots=JSON.parse(localStorage.getItem('myBots')||'[]');
 function addBot(){let u=document.getElementById('boturl').value;if(!u)return;myBots.push(u);localStorage.setItem('myBots',JSON.stringify(myBots));render();}
 function render(){let h='';myBots.forEach(b=>{h+=`<p style="color:#00ff88">● LIVE - ${b}</p>`;fetch(b,{mode:'no-cors'});});document.getElementById('botlist').innerHTML=h;}
