@@ -52,21 +52,6 @@ section{padding:45px 20px}
     <div class="badge"><b>DeDust</b><small>Live</small></div>
     <div class="badge"><b>Jetton</b><small>Verified</small></div>
   </div>
-  <button onclick="showPay()" style="background:#00ff88;color:#000;padding:14px;width:100%;border:none;border-radius:10px;font-weight:bold;">Pay 2 TON</button>
-
-<div id="payBox" style="display:none;background:#111;padding:15px;border-radius:10px;margin-top:12px;color:#fff;">
-<p>Address:</p>
-<p id="tonAddress">UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V</p>
-<button onclick="copyText('tonAddress')">Copy Address</button>
-<p>Memo:</p>
-<p id="tonMemo">PUREAI9999+</p>
-<button onclick="copyText('tonMemo')">Copy Memo</button>
-</div>
-
-<script>
-function showPay(){document.getElementById('payBox').style.display='block';}
-function copyText(id){navigator.clipboard.writeText(document.getElementById(id).innerText);alert('Copied');}
-</script>
 </div>
 <section style="background:#060e25">
   <h2 class="sec-title">🤖 PURE AI Uptime Keeper</h2>
@@ -77,6 +62,39 @@ function copyText(id){navigator.clipboard.writeText(document.getElementById(id).
     <div id="botlist" style="margin-top:15px"></div>
   </div>
 </section>
+  <!-- PAY 2 TON - THANITHANI MEMO -->
+<div style="margin-top:14px;background:#0f1f16;border:1px solid #1de68f;border-radius:14px;padding:16px;text-align:center">
+  <div style="font-weight:800;font-size:18px;color:#fff">Pay 2 TON</div>
+  <div style="font-size:13px;color:#9fb3a8;margin:4px 0 12px">Ungalukku thaniya Memo create pannunga</div>
+
+  <input id="clientName" placeholder="Telegram username podunga - ex: ramesh" style="width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#000;color:#fff;text-align:center;font-size:15px" />
+
+  <button onclick="makeMemo()" style="margin-top:10px;width:100%;padding:12px;border:none;border-radius:10px;background:#1de68f;color:#000;font-weight:800;font-size:15px;cursor:pointer">Enakku Memo Create Pannu</button>
+
+  <div id="payBox" style="display:none;margin-top:14px;text-align:left;background:#000;border-radius:10px;padding:12px">
+    <div style="font-size:12px;color:#9fb3a8">Address:</div>
+    <div style="font-size:13px;word-break:break-all;color:#fff">UQCiax9O8tDfm2w5R1QJ7xF9kXU2qJ2v2Q9kZxL8v9yQe3X</div>
+    <div style="font-size:12px;color:#9fb3a8;margin-top:10px">Ungal Thaniya Memo:</div>
+    <div id="myMemo" style="font-size:16px;font-weight:800;color:#1de68f">PUREAI-</div>
+    <div style="font-size:12px;color:#ffcc00;margin-top:8px">Idha miss pannama copy panni wallet la paste pannunga. Memo thappuna bot start aagadhu.</div>
+    <button onclick="copyMemo()" style="margin-top:10px;width:100%;padding:10px;border:none;border-radius:8px;background:#fff;color:#000;font-weight:700">Memo Copy Pannu</button>
+  </div>
+</div>
+
+<script>
+function makeMemo(){
+  let name = document.getElementById('clientName').value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(!name){ alert('Username podunga da'); return; }
+  let memo = 'PUREAI-' + name;
+  document.getElementById('myMemo').innerText = memo;
+  document.getElementById('payBox').style.display = 'block';
+}
+function copyMemo(){
+  let memo = document.getElementById('myMemo').innerText;
+  navigator.clipboard.writeText(memo);
+  alert('Memo copy aayiduchu: ' + memo);
+}
+</script>
   <!-- PURE AI GUARD - AUTO RESTART / ERROR LOGGER - START -->
 <div style="background:#0a1a3a; padding:20px; border-radius:20px; margin:20px 10px; text-align:center; font-family:Arial; color:white;">
 
