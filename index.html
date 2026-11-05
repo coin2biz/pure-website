@@ -82,7 +82,15 @@ function pay2Ton(){
   <input id="guardBotUrl" type="text" placeholder="https://your-bot.onrender.com" style="width:90%; padding:14px; border-radius:12px; border:none; font-size:15px; text-align:center;">
   <br><br>
   <button onclick="addGuardBot()" style="background:#00aaff; color:white; border:none; padding:14px 20px; width:90%; border-radius:30px; font-size:17px; font-weight:bold; cursor:pointer;">Enable Auto Restart</button>
+  <button onclick="pay2Ton()" style="width:100%; margin-top:10px; padding:12px; border-radius:12px; border:1px solid #00c6ff; background:transparent; color:#00c6ff; font-weight:bold; font-size:16px; cursor:pointer;">
+💎 Pay 2 TON
+</button>
 
+<script>
+function pay2Ton(){
+  window.open('ton://transfer/UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V?amount=2000000000&text=PURE AI', '_blank');
+}
+</script>
   <!-- STATUS -->
   <div id="guardStatus" style="background:#122a5e; padding:15px; border-radius:15px; margin-top:15px; text-align:left;">
     <b>Status:</b> <span id="guardStatusText">Not Added</span><br>
