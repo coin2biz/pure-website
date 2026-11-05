@@ -59,6 +59,15 @@ section{padding:45px 20px}
   <div class="card" style="max-width:500px;margin:0 auto">
     <input id="boturl" placeholder="https://your-bot.onrender.com" style="padding:12px;width:90%;border-radius:8px;border:none;margin:10px 0">
     <button onclick="addBot()" class="btn btn-blue" style="width:100%">Add Bot & Keep Alive</button>
+    <button onclick="pay2Ton()" style="width:100%; margin-top:10px; padding:12px; border-radius:12px; border:1px solid #00c6ff; background:transparent; color:#00c6ff; font-weight:bold; font-size:16px; cursor:pointer;">
+💎 Pay 2 TON
+</button>
+
+<script>
+function pay2Ton(){
+  window.open('ton://transfer/UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V?amount=2000000000&text=PURE AI', '_blank');
+}
+</script>
     <div id="botlist" style="margin-top:15px"></div>
   </div>
 </section>
