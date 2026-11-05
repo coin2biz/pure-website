@@ -39,6 +39,8 @@ section{padding:45px 20px}
 <div class="hero">
   <div class="nav">
     <div class="logo"><img src="IMG-20261026-WA2378.jpg" class="logo-icon"></div> PURE AI TOKEN</div>
+  <div id="ton-connect"></div><div id="w-addr" style="color:#00ff88;font-size:11px;word-break:break-all;text-align:center;margin-top:10px"></div><script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script><script>const tonConnectUI=new TON_CONNECT_UI.TonConnectUI({manifestUrl:'https://pureaitoken.xyz/tonconnect-manifest.json',buttonRootId:'ton-connect'});tonConnectUI.onStatusChange(w=>{if(w)document.getElementById('w-addr').innerText=w.account.address});</script>
+  
     <div style="font-size:10px;color:#5aa9ff;border:1px solid #1e3a7a;padding:4px 10px;border-radius:20px">TON VERIFIED</div>
   </div>
   <h1>The Future of<br><span>Pure AI on TON</span></h1>
