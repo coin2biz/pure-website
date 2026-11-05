@@ -52,6 +52,21 @@ section{padding:45px 20px}
     <div class="badge"><b>DeDust</b><small>Live</small></div>
     <div class="badge"><b>Jetton</b><small>Verified</small></div>
   </div>
+  <button onclick="showPay()" style="background:#00ff88;color:#000;padding:14px;width:100%;border:none;border-radius:10px;font-weight:bold;">Pay 2 TON</button>
+
+<div id="payBox" style="display:none;background:#111;padding:15px;border-radius:10px;margin-top:12px;color:#fff;">
+<p>Address:</p>
+<p id="tonAddress">UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V</p>
+<button onclick="copyText('tonAddress')">Copy Address</button>
+<p>Memo:</p>
+<p id="tonMemo">PUREAI9999+</p>
+<button onclick="copyText('tonMemo')">Copy Memo</button>
+</div>
+
+<script>
+function showPay(){document.getElementById('payBox').style.display='block';}
+function copyText(id){navigator.clipboard.writeText(document.getElementById(id).innerText);alert('Copied');}
+</script>
 </div>
 <section style="background:#060e25">
   <h2 class="sec-title">🤖 PURE AI Uptime Keeper</h2>
