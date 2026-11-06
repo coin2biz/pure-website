@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PURE MongoDB</title>
+<style>
+body{background:#0b0f14;color:white;font-family:sans-serif;text-align:center;padding:30px}
+.box{background:#151b23;padding:20px;border-radius:12px;max-width:400px;margin:auto}
+input{width:90%;padding:12px;border-radius:8px;border:none;margin:10px 0}
+button{background:#00c853;color:white;padding:12px 20px;border:none;border-radius:8px;width:95%;font-weight:bold}
+</style>
+</head>
+<body>
+<h2>PURE MongoDB</h2>
+<div class="box">
+<p>Enter Project / DB Name</p>
+<input id="dbname" placeholder="Ex: vkr-bot" />
+<button onclick="createDB()">Create Database</button>
+<p id="status">Status: Not Created</p>
+</div>
+<script>
+function createDB(){
+  let name = document.getElementById('dbname').value;
+  if(!name){ alert('Name Podunga Sir!'); return; }
+  document.getElementById('status').innerText = 'Status: Creating ' + name + '...';
+  setTimeout(()=>{
+    document.getElementById('status').innerText = 'Status: Created - ' + name;
+  }, 1000);
+}
+</script>
+</body>
+</html>
