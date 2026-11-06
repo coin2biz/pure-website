@@ -21,13 +21,11 @@ button{padding:12px 18px;border:none;border-radius:20px;background:#7c3aed;color
 <header><div style="font-size:24px">✨</div><div><b>Purity GPT</b><br><span>● Online - No Key Needed</span></div></header>
 <div id="chat"><div class="msg ai">Hello! I am Purity GPT. I am here to help you stay calm, focused and positive. What do you want to talk about?</div></div>
 <div id="box"><input id="inp" placeholder="Type your message here..." /><button onclick="send()">Send</button></div>
-
 <script>
 const PROXY_URL = "https://script.google.com/macros/s/AKfycbwhHgSONkleX8P58kLPrwIXTpCwpxZtn-_dTTdc7sV21LNq9cr4gd2bDqEJwUPVNEil/exec";
 const chat = document.getElementById('chat');
 const inp = document.getElementById('inp');
-let history = [];
-
+let historyText = "";
 function addMsg(text, cls){
   const d = document.createElement('div');
   d.className = 'msg ' + cls;
@@ -36,29 +34,20 @@ function addMsg(text, cls){
   chat.scrollTop = chat.scrollHeight;
   return d;
 }
-
 async function send(){
   const text = inp.value.trim();
   if(!text) return;
   addMsg(text, 'user');
   inp.value = '';
   const loading = addMsg('Thinking...', 'ai');
-
-  history.push({role:'user', parts:[{text:text}]});
-
+  historyText += "\nUser: " + text;
   try{
-    const res = await fetch(PROXY_URL, {
-      method:'POST',
-      body: JSON.stringify({
-        contents: history,
-        systemInstruction: { parts: [{ text: "You are Purity GPT, a calm, pure, friendly assistant. Give short, clear, positive answers in English. Help the user stay focused, peaceful and motivated." }] },
-        generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
-      })
-    });
+    const url = PROXY_URL + "?prompt=" + encodeURIComponent(historyText);
+    const res = await fetch(url);
     const data = await res.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, please try again.";
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, please try again. Error: " + (data.error?.message || JSON.stringify(data).slice(0,100));
     loading.textContent = reply;
-    history.push({role:'model', parts:[{text: reply}]});
+    historyText += "\nAI: " + reply;
   }catch(e){
     loading.textContent = "Network problem, please try again.";
   }
