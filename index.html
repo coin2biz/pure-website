@@ -223,7 +223,36 @@ function connectGuardWallet(){
 }
 </script>
 <!-- PURE AI GUARD - END -->
+<!-- PURE MongoDB - INSIDE Website -->
+<div style="background:#0a1230; padding:20px; border-radius:20px; margin-top:20px; text-align:center; border:1px solid #1e3a8a;">
+  <h2 style="color:white; margin:0;">🛢️ PURE MongoDB</h2>
+  <p style="color:#38bdf8; margin:5px 0 15px 0; font-size:14px;">Owner: VKR - Database Service</p>
+  
+  <input id="dbName" placeholder="Enter Project / DB Name" style="width:100%; padding:12px; border-radius:10px; border:none; margin:10px 0; box-sizing:border-box;">
+  
+  <button onclick="createDB()" style="width:100%; padding:13px; background:#0ea5e9; color:white; border:none; border-radius:25px; font-weight:bold; cursor:pointer;">Create Database</button>
+  
+  <button onclick="payDB()" style="width:100%; padding:13px; background:transparent; color:#0ea5e9; border:1px solid #0ea5e9; border-radius:25px; margin-top:10px; font-weight:bold; cursor:pointer;">💎 Pay 2 TON / PURE</button>
+  
+  <div style="text-align:left; color:#cbd5e1; margin-top:15px; font-size:14px; line-height:1.8;">
+    Status: <span id="dbStatus">Not Created</span><br>
+    DB Name: <span id="dbShow">-</span><br>
+    Connection: <span id="dbConn">-</span>
+  </div>
+</div>
 
+<script>
+function createDB(){
+  let name = document.getElementById('dbName').value;
+  if(!name){ alert('DB Name Enter Pannunga Sir!'); return; }
+  document.getElementById('dbShow').innerText = name;
+  document.getElementById('dbStatus').innerText = 'Waiting for Payment...';
+  alert('DB Name Saved Sir! Ippo Pay Pannunga Sir!');
+}
+function payDB(){
+  alert('Pay 2 TON / PURE - Wallet Open Aagum Sir!');
+}
+</script>
 <script>
 let myBots=JSON.parse(localStorage.getItem('myBots')||'[]');
 function addBot(){let u=document.getElementById('boturl').value;if(!u)return;myBots.push(u);localStorage.setItem('myBots',JSON.stringify(myBots));render();}
