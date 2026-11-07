@@ -247,6 +247,7 @@ function createDB(){
   if(!name){ alert('DB Name Enter Pannunga Sir!'); return; }
   document.getElementById('dbShow').innerText = name;
   document.getElementById('dbStatus').innerText = 'Waiting for Payment...';
+  fetch("https://script.google.com/macros/s/AKfycbyes__p_jbV_eDio66-u_sFaEIuPfcIjbU0Pob4HY7Jvb-Kmzwpmvvqv6kV-tpYm3YxiA/exec", {method:"POST", body: JSON.stringify({name:name})});
   alert('DB Name Saved Sir! Ippo Pay Pannunga Sir!');
 }
 function payDB(){
