@@ -253,6 +253,10 @@ function createDB(){
 function payDB(){
 window.open("ton://transfer/UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V?amount=2000000000&text=PURE-DB","_blank");
 }
+function verifyPayment(){
+alert('Payment Verification Request Sent! 5 Minutes la Activate aagum.');
+document.getElementById('dbStatus').innerText = 'Verification Pending...';
+  }
 </script>
 <script>
 let myBots=JSON.parse(localStorage.getItem('myBots')||'[]');
