@@ -248,7 +248,7 @@ function createDB(){
   document.getElementById('dbShow').innerText = name;
   document.getElementById('dbStatus').innerText = 'Waiting for Payment...';
   fetch("https://script.google.com/macros/s/AKfycbyes__p_jbV_eDio66-u_sFaEIuPfcIjbU0Pob4HY7Jvb-Kmzwpmvvqv6kV-tpYm3YxiA/exec", {method:"POST", body: JSON.stringify({name:name})});
-  alert('DB Name Saved Sir! Ippo Pay Pannunga Sir!');
+  alert('Database Name Saved! Please Proceed to Payment.');
 }
 function payDB(){
   alert('Database Name Saved Successfully! Please Complete Payment to Activate.');
