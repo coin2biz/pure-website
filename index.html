@@ -121,7 +121,7 @@ function selectPlan(amount,name){
   btn.innerHTML = 'Pay ' + amount + ' TON / PURE - ' + name;
 }
 function paySelected(){
-  if(selectedAmount == 0){ alert('First oru plan Choose pannunga Sir'); return; }
+  if(selectedAmount == 0){ alert('First Choose a plan'); return; }
   if(!document.getElementById('terms').checked){ alert('Terms tick pannunga Sir'); return; }
   window.open('ton://transfer/UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V?amount=' + (selectedAmount * 1000000000));
 }
