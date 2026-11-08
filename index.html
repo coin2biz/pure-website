@@ -95,7 +95,31 @@ section{padding:45px 20px}
     </button>
   </div>
 </div>
+<div id="profilePopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999;">
+<div style="background:#1a1a1a; width:90%; max-width:350px; margin:100px auto; padding:20px; border-radius:12px; text-align:center;">
+<h3 style="color:white;">Profile</h3>
+<button onclick="openWithdrawal()" style="width:100%; padding:12px; background:#2a7fff; color:white; border:none; border-radius:8px;">Withdrawal</button>
+<br><br>
+<button onclick="openPending()" style="width:100%; padding:12px; background:#333; color:white; border:none; border-radius:8px;">Pending</button>
+<br><br>
+<a href="#" onclick="closeProfile(); return false;" style="color:#4da6ff;">Close</a>
+</div>
+</div>
 
+<script>
+function openProfile() {
+  document.getElementById('profilePopup').style.display = 'block';
+}
+function closeProfile() {
+  document.getElementById('profilePopup').style.display = 'none';
+}
+function openWithdrawal() {
+  alert('Withdrawal page open');
+}
+function openPending() {
+  alert('Pending list open');
+}
+</script>
 <script>
 let seconds = 12*60*60;
 let mining = false;
@@ -110,7 +134,7 @@ function startMining(){
   mining = true;
   document.getElementById('mineBtn').innerHTML = '🔄<br>Mining...';
   setInterval(()=>{
-    if(seconds <= 0){ alert('12 Hours Mudinjiruchu bro! 30 PURE Claim pannunga'); return; }
+    if(seconds <= 0){ alert('12 Hours completed 30 PURE Claim'); return; }
     seconds--;
     earned += 2.5/3600;
     document.getElementById('minedAmount').innerText = earned.toFixed(4);
