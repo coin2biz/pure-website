@@ -102,6 +102,10 @@ let mining = false;
 let earned = 0;
 
 function startMining(){
+  if(!window.connectedWallet){
+    tonConnectUI.openModal();
+    return;
+  }
   if(mining) return;
   mining = true;
   document.getElementById('mineBtn').innerHTML = '🔄<br>Mining...';
