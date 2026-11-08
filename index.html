@@ -142,6 +142,12 @@ function pay2Ton(){ paySelected(); }
   <input id="guardBotUrl" type="text" placeholder="" style="width:90%; padding:14px; border-radius:12px; border:none; font-size:15px; text-align:center;">
   <br><br>
   <button onclick="addGuardBot()" style="background:#00aaff; color:white; border:none; padding:14px 20px; width:90%; border-radius:30px; font-size:17px; font-weight:bold; cursor:pointer;">Enable Auto Restart</button>
+  <div style="display:flex;gap:8px;justify-content:center;margin:10px 0;">
+<button onclick="selectGuardPlan(2,'1 MONTH')">1 MONTH - 2 TON</button>
+<button onclick="selectGuardPlan(5,'3 MONTHS')">3 MONTHS - 5 TON</button>
+<button onclick="selectGuardPlan(9,'6 MONTHS')">6 MONTHS - 9 TON</button>
+</div>
+<label style="color:white;"><input type="checkbox" id="termsGuard"> I agree Terms and Conditions</label><br><br>
   <button onclick="payGuard()" style="width:100%; margin-top:10px; padding:12px; border-radius:12px; border:1px solid #00c6ff; background:transparent; color:#00c6ff; font-weight:bold; font-size:16px; cursor:pointer;">
 💎 Pay 2 TON/PURE
 </button>
