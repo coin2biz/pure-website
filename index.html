@@ -277,10 +277,10 @@ render();setInterval(render,60000);
   </div>
   <div class="card" style="margin:20px auto 0;max-width:500px;background:#0f1f45">
     <small style="color:#5aa9ff">CONTRACT ADDRESS:</small>
-    <div class="copy-box">
-      <span id="c">EQAS3BU-wKhd97ESu2HGodWYhh-yA6VBoC9gl4vEYz4LtxIf</span>
-      <button onclick="navigator.clipboard.writeText('EQAS3BU-wKhd97ESu2HGodWYhh-yA6VBoC9gl4vEYz4LtxIf');alert('Copied!')" style="background:#00aaff;border:none;color:#fff;padding:6px 12px;border-radius:6px;font-size:10px">COPY</button>
-    </div>
+    <div class="copy-box" style="display:flex;align-items:center;gap:10px;">
+<span id="c" style="flex:1;word-break:break-all;">EQAS3BU-wKhd97ESu2HGodWYhh-yA6VBoC9gl4vEYz4LtxIf</span>
+<button onclick="navigator.clipboard.writeText(document.getElementById('c').innerText);alert('Copied!')" style="min-width:70px;white-space:nowrap;padding:10px 14px;">COPY</button>
+  </div>
   </div>
 </section>
 
