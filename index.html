@@ -148,13 +148,22 @@ function pay2Ton(){ paySelected(); }
 <button onclick="selectGuardPlan(9,'6 MONTHS')">6 MONTHS - 9 TON</button>
 </div>
 <label style="color:white;"><input type="checkbox" id="termsGuard"> I agree Terms and Conditions</label><br><br>
-  <button onclick="payGuard()" style="width:100%; margin-top:10px; padding:12px; border-radius:12px; border:1px solid #00c6ff; background:transparent; color:#00c6ff; font-weight:bold; font-size:16px; cursor:pointer;">
+  <button Id="guardpaybtn"onclick="payGuard()"style="width:100%; margin-top:10px; padding:12px; border-radius:12px; border:1px solid #00c6ff; background:transparent; color:#00c6ff; font-weight:bold; font-size:16px; cursor:pointer;">
 💎 Pay 2 TON/PURE
 </button>
 
 <script>
+let guardAmount = 0;
+let guardPlan = '';
+function selectGuardPlan(amount, plan){
+  guardAmount = amount;
+  guardPlan = plan;
+  document.getElementById('guardPayBtn').innerText = 'Pay ' + amount + ' TON / PURE - ' + plan;
+}
 function payGuard(){
-  window.open('ton://transfer/UQCiaxkBjc3BYLxcw4Zf63CmEx0SI7jfA8bkS29dSrvhig0V?amount=2000000000&text=PURE AI', '_blank');
+  if(guardAmount == 0){ alert('First select a plan'); return; }
+  if(!document.getElementById('termsGuard').checked){ alert('Please agree Terms'); return; }
+  window.open('ton://transfer/UQCiaxkBjc');
 }
 </script>
   <!-- STATUS -->
