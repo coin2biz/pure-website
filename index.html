@@ -358,7 +358,7 @@ function openSignup(){document.getElementById('loginBox').style.display='block'}
 <br>
 <input type="password" placeholder="Password" style="width:90%;padding:10px;margin:8px;border-radius:8px;border:none">
 <br>
-<button style="background:#8b5cf6;color:white;padding:10px 20px;border:none;border-radius:10px;margin-top:10px">Login</button>
+<button onclick="login()"style="background:#8b5cf6;color:white;padding:10px 20px;border:none;border-radius:10px;margin-top:10px">Login</button>
 <br><br>
 <span onclick="document.getElementById('loginBox').style.display='none'" style="color:#aaa;cursor:pointer">Close</span>
 </div>
@@ -381,6 +381,17 @@ function signup(){
   document.getElementById('signupBox').style.display='none';
   document.getElementById('loginBox').style.display='block';
 }
+    function login(){
+  let u = document.querySelector('#loginBox input[placeholder="user name"]').value;
+  let p = document.querySelector('#loginBox input[placeholder="Password"]').value;
+  let su = localStorage.getItem("user");
+  let sp = localStorage.getItem("pass");
+  if(u == su && p == sp){
+    alert("Login Success");
+  } else {
+    alert("Wrong Details");
+  }
+    }
   </script>
 </body>
   
