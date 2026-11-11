@@ -374,9 +374,9 @@ function openSignup(){document.getElementById('signupBox').style.display='block'
 </div>
   <script>
 function signup(){
-  let name = document.querySelector('#signupBox input[placeholder="Full Name"]').value;
+  let name = document.querySelector('#signupBox input[placeholder="Email"]').value;
   let pass = document.querySelector('#signupBox input[placeholder="Create a password"]').value;
-  localStorage.setItem("user", name);
+  localStorage.setItem("user", Email);
   localStorage.setItem("pass", pass);
   alert("Signup Done. Please Login");
   document.getElementById('signupBox').style.display='none';
