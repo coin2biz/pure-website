@@ -415,6 +415,14 @@ document.addEventListener('click', function(e){
     }
   }
 }, true);
+    // Create Account button-a work aakku
+document.addEventListener('click', function(e){
+  if(e.target.textContent.trim() === 'Create Account'){
+    localStorage.setItem('travel_user','created');
+    document.querySelectorAll('.modal, [id*="auth"], [id*="signup"], [id*="login"]').forEach(m=>m.style.display='none');
+    alert('Account create aayiduchu!');
+  }
+});
   </script>
 </body>
   
