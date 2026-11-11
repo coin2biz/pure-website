@@ -390,10 +390,31 @@ function signup(){
   let sp = localStorage.getItem("pass");
   if(u == su && p == sp){
     alert("Login Success");
+    isLoggedIn = true;
+document.getElementById('loginBox').style.display = 'none';
   } else {
     alert("Wrong Details");
   }
     }
+    let isLoggedIn = false;
+document.addEventListener('click', function(e){
+  if(!isLoggedIn){
+    let loginBox = document.getElementById('loginBox');
+    let signupBox = document.getElementById('signupBox');
+    if(loginBox && !loginBox.contains(e.target) && signupBox && !signupBox.contains(e.target)){
+      e.preventDefault();
+      e.stopPropagation();
+      let savedUser = localStorage.getItem("user");
+      if(savedUser){
+        loginBox.style.display = 'block';
+        signupBox.style.display = 'none';
+      } else {
+        signupBox.style.display = 'block';
+        loginBox.style.display = 'none';
+      }
+    }
+  }
+}, true);
   </script>
 </body>
   
