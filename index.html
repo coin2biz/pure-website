@@ -363,15 +363,25 @@ function openSignup(){document.getElementById('loginBox').style.display='block'}
 <span onclick="document.getElementById('loginBox').style.display='none'" style="color:#aaa;cursor:pointer">Close</span>
 </div>
 </div>
-  function signup(){
+<div id="signupBox">
+<h2>Signup</h2>
+<input placeholder="Name">
+<input placeholder="Email">
+<input placeholder="Create a password" type="password">
+<input placeholder="Confirm password" type="password">
+<button onclick="signup()">Submit</button>
+</div>
+  <script>
+function signup(){
   let name = document.querySelector('#signupBox input[placeholder="Name"]').value;
   let pass = document.querySelector('#signupBox input[placeholder="Create a password"]').value;
   localStorage.setItem("user", name);
   localStorage.setItem("pass", pass);
-  alert("Signup Done. Ippo Login pannunga");
+  alert("Signup Done. Please Login");
   document.getElementById('signupBox').style.display='none';
-  document.getElementById('loginBox').style.display='flex';
+  document.getElementById('loginBox').style.display='block';
 }
+  </script>
 </body>
   
 
