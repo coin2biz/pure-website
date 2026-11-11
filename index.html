@@ -375,7 +375,7 @@ function openSignup(){document.getElementById('signupBox').style.display='block'
 </div>
   <script>
 function signup(){
-  let name = document.querySelector('#signupBox input[placeholder="Name"]').value;
+  let name = document.querySelector('#signupBox input[placeholder="Full Name"]').value;
   let pass = document.querySelector('#signupBox input[placeholder="Create a password"]').value;
   localStorage.setItem("user", name);
   localStorage.setItem("pass", pass);
@@ -415,14 +415,6 @@ document.addEventListener('click', function(e){
     }
   }
 }, true);
-    // Create Account button-a work aakku
-document.addEventListener('click', function(e){
-  if(e.target.textContent.trim() === 'Create Account'){
-    localStorage.setItem('travel_user','created');
-    document.querySelectorAll('.modal, [id*="auth"], [id*="signup"], [id*="login"]').forEach(m=>m.style.display='none');
-    alert('Account create aayiduchu!');
-  }
-});
   </script>
 </body>
   
