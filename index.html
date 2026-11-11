@@ -374,7 +374,7 @@ function openSignup(){document.getElementById('signupBox').style.display='block'
 </div>
   <script>
 function signup(){
-  let email = document.querySelector('#signupBox input[placeholder="Email address"]').value;
+  let email = document.querySelector('#signupBox input[placeholder="Email Address"]').value;
   let pass = document.querySelector('#signupBox input[placeholder="Create a password"]').value;
   localStorage.setItem("user", email);
   localStorage.setItem("pass", pass);
@@ -383,7 +383,7 @@ function signup(){
   document.getElementById('loginBox').style.display='block';
 }
     function login(){
-  let u = document.querySelector('#loginBox input[placeholder="Email address"]').value;
+  let u = document.querySelector('#loginBox input[placeholder="Email Address"]').value;
   let p = document.querySelector('#loginBox input[placeholder="Password"]').value;
   let su = localStorage.getItem("user");
   let sp = localStorage.getItem("pass");
