@@ -363,6 +363,15 @@ function openSignup(){document.getElementById('loginBox').style.display='block'}
 <span onclick="document.getElementById('loginBox').style.display='none'" style="color:#aaa;cursor:pointer">Close</span>
 </div>
 </div>
+  function signup(){
+  let name = document.querySelector('#signupBox input[placeholder="Name"]').value;
+  let pass = document.querySelector('#signupBox input[placeholder="Create a password"]').value;
+  localStorage.setItem("user", name);
+  localStorage.setItem("pass", pass);
+  alert("Signup Done. Ippo Login pannunga");
+  document.getElementById('signupBox').style.display='none';
+  document.getElementById('loginBox').style.display='flex';
+}
 </body>
   
 
